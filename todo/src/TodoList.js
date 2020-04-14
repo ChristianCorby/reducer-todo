@@ -1,27 +1,27 @@
 import React from "react";
 import TodoForm from "./TodoForm.js";
-import Todo from "./ToDo.js";
+import props from "./ToDo.js";
 class TodoList extends React.Component {
     state = {
         todos: []
     };
 
-    addTodo = todo => {
+    addTodo = toDo => {
         this.setState({
-            todos: [todo, ...this.state.todos]
+            todos: [props, ...this.state.todos]
         });
     }
 
     toggleComplete = (id) => {
         this.setState({
             todos: this.state.todos.map(todo => {
-                if (todo.id === id) {
+                if (props.id === id) {
                     return{
-                        ...todo,
+                        ...props,
                         complete: !todo.complete
                     };
                 } else{
-                    return todo;
+                    return props;
                 }
             })
         })
@@ -32,7 +32,7 @@ class TodoList extends React.Component {
             <div>
                 <TodoForm onSubmit={this.addTodo}/>
                 {this.state.todos.map(todo => (
-                    <Todo 
+                    <props 
                         key={todo.id} 
                         toggleComplete={
                             () => this.toggleComplete(todo.id)
